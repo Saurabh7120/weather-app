@@ -2,7 +2,6 @@ import { Divider, HStack, Text, VStack } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { format, parse } from 'date-fns';
 import { WeatherContext } from '../../context/WeatherContext';
-import { Format } from '../../utils';
 
 const CurrentWeather = ({data,location}) => {
 
@@ -18,8 +17,8 @@ const CurrentWeather = ({data,location}) => {
 
                 <Divider orientation='vertical' bg={'black'} h={'2.8rem'} w={'2px'}/>
                 <VStack alignItems={'flex-start'} gap={'1px'}>
-                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{Format(location.localtime, "EE, MMM d")}</Text>
-                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{Format(location.localtime, "h:mm a")}</Text>
+                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{format(parse('', '', new Date(location.localtime)), "EE, MMM d")}</Text>
+                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{format(parse('', '', new Date(location.localtime)), "h:mm a")}</Text>
                 </VStack>
             </HStack>
             <Text as={'h2'} fontWeight={'bold'} fontSize={'2xl'} >{`${location.name}, ${location.region}`}</Text>
