@@ -4,7 +4,7 @@
 This is a React App to get weather details of any place you want to.
 
 
-## Demo
+## Live
 
 https://weather-app-green-theta-95.vercel.app/
 
