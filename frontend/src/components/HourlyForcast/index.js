@@ -1,5 +1,5 @@
 import { Box, Text, VStack } from '@chakra-ui/react';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import React, { useEffect } from 'react';
 import SingleHour from './SingleHour';
 
@@ -8,7 +8,7 @@ const HourlyForcast = ({data}) => {
 
     useEffect(() => {
         if(!data) return
-        const today = data.forecastday.find(i => `${format(new Date(i.date), "EE, MMM d")}` === `${format(new Date(), "EE, MMM d")}`)
+        const today = data.forecastday.find(i => `${format(parse('', '', new Date(i.date)), "EE, MMM d")}` === `${format(parse('', '', new Date()), "EE, MMM d")}`)
         setHourlyData(today.hour)
     },[data])
 

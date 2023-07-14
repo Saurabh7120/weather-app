@@ -5,7 +5,7 @@ import { FiWind } from 'react-icons/fi';
 import { BsDropletHalf, BsSun } from 'react-icons/bs';
 import { TbSunrise, TbSunset } from 'react-icons/tb';
 import Tiles from '../utils/Tiles';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { WeatherContext } from '../../context/WeatherContext';
 
 const WeatherDetails = ({data}) => {
@@ -15,7 +15,7 @@ const WeatherDetails = ({data}) => {
 
     useEffect(() => {
         if(!data) return
-        const today = data.forecast.forecastday.find(i => `${format(new Date(i.date), "EE, MMM d")}` === `${format(new Date(), "EE, MMM d")}`)
+        const today = data.forecast.forecastday.find(i => `${format(parse('', '', new Date(i.date)), "EE, MMM d")}` === `${format(parse('', '', new Date()), "EE, MMM d")}`)
         calculateTimeOfDay(today.astro.sunrise, today.astro.sunset, data.location.localtime)
         setAstroData({...data.current,...today.astro})
     },[data, unit])
