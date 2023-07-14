@@ -6,11 +6,20 @@ router.get("/getWeatherByCity", async (req, res) => {
     try {
         const {city,lat,long} = req.query;
 
+        let query="";
+        if(city) {
+            query = city
+        }else if(lat && long){
+            query = `${lat},${long}`
+        }else{
+          return res.status(400)
+        }
+
         const options = {
             method: 'GET',
             url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
             params: {
-              q: city ? city : `${lat},${long}`,
+              q: query,
               days: '3'
             },
             headers: {
