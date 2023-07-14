@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Box >
-      <video ref={videoRef} autoPlay muted loop id="bgVideo">
+      <video ref={videoRef} autoPlay playsInline muted loop id="bgVideo">
             <source src={`/${timeOfDay}.mp4`} type="video/mp4"/>
       </video> 
       <Main/>
