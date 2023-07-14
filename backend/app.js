@@ -1,5 +1,14 @@
 const express = require('express');
+var cors = require("cors");
 const app = express();
+
+var options = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}
+app.use(cors(options));
 
 const configRoutes = require('./routes');
 

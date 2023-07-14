@@ -4,14 +4,13 @@ const router = express.Router();
 
 router.get("/getWeatherByCity", async (req, res) => {
     try {
-        console.log("called")
-        const city = req.query.city;
+        const {city,lat,long} = req.query;
 
         const options = {
             method: 'GET',
             url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
             params: {
-              q: city,
+              q: city ? city : `${lat},${long}`,
               days: '3'
             },
             headers: {
@@ -21,7 +20,6 @@ router.get("/getWeatherByCity", async (req, res) => {
         };
 
         const weather = await axios.request(options)
-        console.log(weather.data)
         res.json(weather.data);
     } catch (e) {
         console.log(e)
