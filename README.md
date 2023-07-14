@@ -4,6 +4,9 @@
 This is a React App to get weather details of any place you want to.
 
 
+## Demo
+
+https://weather-app-green-theta-95.vercel.app/
 
 
 ## Features
@@ -30,12 +33,6 @@ This is a React App to get weather details of any place you want to.
 - ### Get 3 day forecast
 - ### Switch between °C and °F
 
-
-
-
-## Demo
-
-https://weather-app-green-theta-95.vercel.app/
 
 
 ## Installation
