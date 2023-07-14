@@ -18,7 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 configRoutes(app);
 
-app.listen(3001, () => {
+const PORT = process.env.PORT || 3030;
+
+app.listen(PORT, () => {
   console.log("Server has been initialized!");
-  console.log('Your routes will be running on http://localhost:3000');
+  console.log(`Your routes will be running on ${PORT}`);
 });
