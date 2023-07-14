@@ -4,7 +4,7 @@ import React, { createContext, useState } from 'react';
 export const WeatherContext = createContext();
 
 const WeatherContextProvider = ({children}) => {
-    const [unit, setUnit] = useState('c')
+    const [unit, setUnit] = useState('f')
     const [timeOfDay, setTimeOfDay] = useState()
 
     const convertTime = timeStr => {
