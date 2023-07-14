@@ -14,15 +14,15 @@ router.get("/getWeatherByCity", async (req, res) => {
               days: '3'
             },
             headers: {
-              'X-RapidAPI-Key': 'cb50c4ee10mshb12a68cdf4843b8p1b54dfjsnbd76d3a890cf',
-              'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+              'X-RapidAPI-Key': process.env.API_KEY,
+              'X-RapidAPI-Host': process.env.API_HOST
             }
         };
 
         const weather = await axios.request(options)
         res.json(weather.data);
     } catch (e) {
-        console.log(e)
+        // console.log(e)
         res.status(404).json({ error: e });
     }
 })
