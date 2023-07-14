@@ -26,7 +26,9 @@ const Main = () => {
       timeout: 5000,
       maximumAge: 0,
   };
+
   function success(pos) {
+      //if access granted get the location and pass it to the mutation
       var crd = pos.coords;
       mutation.mutate({lat: crd.latitude, long: crd.longitude})
   }
@@ -35,18 +37,17 @@ const Main = () => {
   console.warn(`ERROR(${err.code}): ${err.message}`);
   }
   useEffect(() => {
+      //get location permisson and take action based on the result
       if (navigator.geolocation) {
           navigator.permissions
           .query({ name: "geolocation" })
           .then(function (result) {
               if (result.state === "granted") {
-                  //If granted then you can directly call your function here
                   navigator.geolocation.getCurrentPosition(success, errors, options);
                 } else if (result.state === "prompt") {
-                  //If prompt then the user will be asked to give permission
                   navigator.geolocation.getCurrentPosition(success, errors, options);
                 } else if (result.state === "denied") {
-                  //If denied then you have to show instructions to enable location
+                  mutation.mutate({city: "Jersey City"})
                 }
           });
       } else {
@@ -67,7 +68,6 @@ const Main = () => {
             <br/>
             {(mutation.isLoading ) && <Progress size='xs' isIndeterminate />}
             {error && <Text>Oops! Something went wrong!</Text>}
-            {/* <Fade in={(mutation.isSuccess || status === "success")} delay={2000}> */}
             {(mutation.isSuccess && forcast && !error)  && 
             <>
                 <CurrentWeather
@@ -89,9 +89,6 @@ const Main = () => {
                 </div>
 
             </>}
-            
-            {/* </Fade> */}
-
       </Container>
 
     );

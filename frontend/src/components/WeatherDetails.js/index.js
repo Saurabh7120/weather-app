@@ -15,7 +15,9 @@ const WeatherDetails = ({data}) => {
 
     useEffect(() => {
         if(!data) return
+        //find which entry is for today in data.forecastday and get its astro data
         const today = data.forecast.forecastday.find(i => `${format(parse('', '', new Date(i.date)), "EE, MMM d")}` === `${format(parse('', '', new Date()), "EE, MMM d")}`)
+        //send the sunset and sunrise time to calculateTimeOfDay to get the time of day
         calculateTimeOfDay(today.astro.sunrise, today.astro.sunset, data.location.localtime)
         setAstroData({...data.current,...today.astro})
     },[data, unit])

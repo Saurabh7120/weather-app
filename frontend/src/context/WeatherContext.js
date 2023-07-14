@@ -8,6 +8,7 @@ const WeatherContextProvider = ({children}) => {
     const [timeOfDay, setTimeOfDay] = useState()
 
     const convertTime = timeStr => {
+        //function to get hours number from time string
         const [time, modifier] = timeStr.split(' ');
         let [hours, minutes] = time.split(':');
         if (hours === '12') {
@@ -26,16 +27,16 @@ const WeatherContextProvider = ({children}) => {
         let evening = convertTime(sunset)
         let now = new Date(current).getHours()
         if(now > evening) {
-            // console.log('night')
+            //if time is past sunset set time of day to night
             setTimeOfDay('night')
         }else if(now > evening - 2) {
-            // setTimeOfDay('sunset')
+            //if time is past 2 hours before sunset set time of day to evening
             setTimeOfDay('sunset')
         }else if(now > day) {
-            // console.log('day')
+            //if time is past sunrise set time of day to day
             setTimeOfDay('day')
         }else{
-            // console.log('sunrise')
+            //if time is past 2 hours before sunrise set time of day to sunrise
             setTimeOfDay('sunrise')
         }
     }

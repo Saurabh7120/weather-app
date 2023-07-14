@@ -20,11 +20,11 @@ const TextField = ({handleLocation}) => {
     }
 
     const {unit, setUnit} = useContext(WeatherContext)
-
+    console.log(process.env.REACT_APP_PLACES_KEY)
     return (
         <Box minW={'87%'} >
             <LoadScript
-                googleMapsApiKey={'AIzaSyDnvpIuyGM-hJNmefXnN9pVdbFFAgcO6t8'}
+                googleMapsApiKey={process.env.REACT_APP_PLACES_KEY}
                 libraries={['places']}
             >
                 <StandaloneSearchBox
