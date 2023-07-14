@@ -1,13 +1,14 @@
 import { HStack, Text } from '@chakra-ui/react';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import React, { useContext } from 'react';
 import { WeatherContext } from '../../context/WeatherContext';
+import { Format } from '../../utils';
 
 const SingleHour = ({data}) => {
     const {unit} = useContext(WeatherContext)
     return (
         <HStack justifyContent={'space-evenly'} w={'100%'}>
-            <Text w={'33%'}>{format(new Date(data.time), "h:mm a")}</Text>
+            <Text w={'33%'}>{Format(data.time, "h:mm a")}</Text>
             <HStack justifyContent={'space-between'}  w={'40%'}>
                 <Text isTruncated>{data.condition.text}</Text>
                 <img style={{width:'1.5rem', height:'1.5rem'}} src={data.condition.icon} alt="icon"/>
