@@ -12,22 +12,24 @@ const TextField = ({handleLocation}) => {
         const data = inputRef.current.getPlaces();
         if(data) {
             const [place] = data;
-            console.log(place)
             if(place) {
+                //if a place is selected send the city name to handleLocation function which will call the api
                 handleLocation({city: place.formatted_address})
             }
         }
     }
 
     const {unit, setUnit} = useContext(WeatherContext)
-
+    console.log(process.env.REACT_APP_PLACES_KEY)
     return (
         <Box minW={'87%'} >
             <LoadScript
-                googleMapsApiKey={'AIzaSyDnvpIuyGM-hJNmefXnN9pVdbFFAgcO6t8'}
+                //for loading scripts for places api
+                googleMapsApiKey={process.env.REACT_APP_PLACES_KEY}
                 libraries={['places']}
             >
                 <StandaloneSearchBox
+                    //search box for places api
                     onLoad={(ref) => inputRef.current = ref}
                     onPlacesChanged={handlePlacesChanged}
                 >
@@ -40,8 +42,8 @@ const TextField = ({handleLocation}) => {
                         borderRadius={'3xl'}
                     />
                     <InputRightElement width='5.5rem' marginRight={'1rem'}>
+                        {/* //switch for changing units */}
                         <HStack><span>°F</span> <Switch isChecked={unit === 'c'} onChange={e => unit === 'f' ? setUnit('c') : setUnit('f') } colorScheme='blue' /> <span>°C</span></HStack>
-                    
                     </InputRightElement>
                     </InputGroup>
 
