@@ -26,7 +26,7 @@ const WeatherContextProvider = ({children}) => {
         let day = convertTime(sunrise) + 1
         let evening = convertTime(sunset)
         let now = new Date(current).getHours()
-        if(now > evening) {
+        if(now > evening || now <  day-2) {
             //if time is past sunset set time of day to night
             setTimeOfDay('night')
         }else if(now > evening - 2) {
