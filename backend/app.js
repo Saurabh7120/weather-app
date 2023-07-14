@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 var cors = require("cors");
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 configRoutes(app);
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log("Server has been initialized!");
