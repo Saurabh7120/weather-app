@@ -7,7 +7,6 @@ const CurrentWeather = ({data,location}) => {
 
     const {unit} = useContext(WeatherContext)
 
-
     return (
         <VStack alignItems={'center'} w={'fit-content'} p={4} className='glassBg'>
             <HStack gap={'1rem'}>
