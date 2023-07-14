@@ -1,12 +1,12 @@
 import { Divider, HStack, Text, VStack } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import { format, parse } from 'date-fns';
 import { WeatherContext } from '../../context/WeatherContext';
+import { DateTime } from 'luxon';
 
 const CurrentWeather = ({data,location}) => {
 
     const {unit} = useContext(WeatherContext)
-    
+
     return (
         <VStack alignItems={'center'} w={'fit-content'} p={4} className='glassBg'>
             <HStack gap={'1rem'}>
@@ -17,8 +17,8 @@ const CurrentWeather = ({data,location}) => {
 
                 <Divider orientation='vertical' bg={'black'} h={'2.8rem'} w={'2px'}/>
                 <VStack alignItems={'flex-start'} gap={'1px'}>
-                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{format(parse('', '', new Date(location.localtime)), "EE, MMM d")}</Text>
-                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{format(parse('', '', new Date(location.localtime)), "h:mm a")}</Text>
+                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{DateTime.now((`${location.localtime}`)).toLocaleString({ weekday:"short", month: 'long', day: 'numeric', year: "2-digit" })}</Text>
+                    <Text as={'h2'} fontWeight={'bold'} fontSize={'xl'} >{DateTime.now((`${location.localtime}`)).toLocaleString({ hour: 'numeric', minute: '2-digit' })}</Text>
                 </VStack>
             </HStack>
             <Text as={'h2'} fontWeight={'bold'} fontSize={'2xl'} >{`${location.name}, ${location.region}`}</Text>
