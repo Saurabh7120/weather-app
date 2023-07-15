@@ -60,13 +60,15 @@ const Main = () => {
   
 
     return (
-        <Container maxW={'container.xl'} display={'flex'} flexDirection={'column'} alignItems={"center"} py={'2rem'}>
+        <Container maxW={'container.xl'} height={'100vh'} display={'flex'} flexDirection={'column'} alignItems={"center"} py={'2rem'}>
             <TextField
             handleLocation={location => mutation.mutate(location)}
             />
             <br/>
             <br/>
-            {(mutation.isLoading ) && <Progress size='xs' isIndeterminate />}
+            {(mutation.isLoading ) && 
+              <Progress w={'80%'} pos={'absolute'} m={'auto'} top={0} bottom={0} right={0} left={0} height={'2px'} colorScheme='green' size='sm' isIndeterminate />
+              }
             {error && <Text>Oops! Something went wrong!</Text>}
             {(mutation.isSuccess && forcast && !error)  && 
             <>
