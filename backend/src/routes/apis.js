@@ -7,6 +7,7 @@ router.get("/getWeatherByCity", async (req, res) => {
         const {city,lat,long} = req.query;
 
         let query="";
+        //if city is provided, use city, else use lat and long else send 400 BAD REQUEST
         if(city) {
             query = city
         }else if(lat && long){
